@@ -27,15 +27,21 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         if isinstance(page, int) and isinstance(page_size, int):
-            assert page >= 0 and page_size >= 0, "AssertionError raised with negative values"
+            assert page >= 0 and page_size >= 0, (
+                "AssertionError raised with negative values"
+            )
             assert page != 0 and page_size != 0, "AssertionError raised with 0"
         else:
-            raise AssertionError("AssertionError raised when page and/or page_size are not ints")
+            raise AssertionError(
+                "AssertionError raised when page and/or"
+                " page_size are not ints"
+            )
         t = index_range(page, page_size)
         data = Server.dataset(self)
         if len(data) <= t[1]:
             return []
         return data[t[0]:t[1]]
+
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """

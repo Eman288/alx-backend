@@ -33,7 +33,7 @@ class Server:
             raise AssertionError("AssertionError raised when page and/or page_size are not ints")
         t = index_range(page, page_size)
         data = Server.dataset(self)
-        if len(data) > t[1] + 1:
+        if len(data) <= t[1]:
             return []
         return data[t[0]:t[1]]
 

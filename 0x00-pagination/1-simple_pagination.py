@@ -1,4 +1,4 @@
-#!/usr/bin/env/python3
+#!/usr/bin/env python3
 """a module to solve task 1"""
 from typing import Tuple
 import csv

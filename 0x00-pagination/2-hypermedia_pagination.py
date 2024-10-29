@@ -5,6 +5,9 @@ import csv
 import math
 from typing import List
 from typing import Dict
+from typing import Optional
+from typing import Any
+from typing import Union
 
 
 class Server:
@@ -42,8 +45,10 @@ class Server:
         if len(data) <= t[1]:
             return []
         return data[t[0]:t[1]]
-    
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, int]:
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Union[
+        Optional[int], List[List[Any]]]
+    ]:
         """
         returns a dictionary containing the following key-value pairs:
         page_size: the length of the returned dataset page
@@ -53,10 +58,12 @@ class Server:
         prev_page: number of the previous page, None if no previous page
         total_pages: the total number of pages in the dataset as an integer
         """
-        mydict = {'page_size': page_size, 'page': page}
-        mylist = Server.get_page(self, page, page_size)
-        t = index_range(page, page_size)
-        dataset = Server.dataset(self)
+        mydict: Dict[str, Union[
+            Optional[int], List[List[Any]]]
+            ] = {'page_size': page_size, 'page': page}
+        mylist: List[Any] = Server.get_page(self, page, page_size)
+        t: Tuple[int, int] = index_range(page, page_size)
+        dataset: List[Any] = Server.dataset(self)
         mydict['data'] = mylist
         if mylist == []:
             total = math.ceil(len(dataset) / float(page_size))

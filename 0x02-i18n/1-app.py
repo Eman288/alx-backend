@@ -5,10 +5,11 @@ a module to set a basic babel setup
 """
 
 
-class Config :
+class Config:
     LANGUAGES = ["en", "fr"]
     DEFAULT_LOCALE = "en"
     TIMEZONE = "UTC"
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
